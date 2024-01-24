@@ -1,0 +1,15 @@
+.brush-wrap {
+  position: relative;
+  display: inline-block;
+  transform: rotate(90deg);
+}
+
+.brush-wrap:before {
+  content: '';
+  position: absolute;
+  height: 25%;
+  width: 100%;
+  background: #dcfc4c ;
+  z-index: -1;
+  clip-path: url(#clip);
+}

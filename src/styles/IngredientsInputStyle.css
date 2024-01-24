@@ -1,0 +1,35 @@
+.main-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.animation-div {
+  margin: 20px 10px
+}
+
+.anim-circle {
+  border-radius: 50%;
+  background-color: #98a9b9;
+}
+
+.description-div {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin: 10px;
+  color:#e8b552;
+  font-size: 30px;
+  font-weight: bold;
+}
+.action-wrapper {
+  margin: 20px;
+  display: flex;
+  flex-direction: column;
+}
+
+.action-div {
+  display: flex;
+  justify-content: center;
+  padding: 10px;
+}
