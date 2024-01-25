@@ -1,4 +1,5 @@
-import './BrushStyle.css'
+import { ReactNode } from 'react';
+import '../styles/BrushStyle.css'
 
 type Dimentions = {
   width: number;
@@ -6,10 +7,11 @@ type Dimentions = {
 }
 
 interface BrushProps {
-  dimentions: Dimentions
+  dimentions: Dimentions;
+  children: ReactNode
 }
 
-const Brush: React.FC<BrushProps> = ({ dimentions }) => {
+const Brush: React.FC<BrushProps> = ({ dimentions, children }) => {
   return (
     <div
       className="brush-wrap"
@@ -18,7 +20,15 @@ const Brush: React.FC<BrushProps> = ({ dimentions }) => {
         width: dimentions.width / 2.5,
         marginLeft: -dimentions.width / 7
       }}
-    />
+    >
+      <div
+        style={{
+          marginTop: -dimentions.width / 7,
+        }}
+      >
+        {children}
+      </div>
+    </div>
   )
 }
 

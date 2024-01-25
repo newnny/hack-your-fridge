@@ -1,0 +1,18 @@
+.circle-container {
+  position: relative;
+}
+
+.animated-circle {
+  position: absolute;
+  border-radius: 50%;
+  animation: appear 1s ease-in-out forwards;
+}
+
+@keyframes appear {
+  from {
+    transform: scale(0);
+  }
+  to {
+    transform: scale(1);
+  }
+}

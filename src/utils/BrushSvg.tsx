@@ -15,7 +15,7 @@ export const BrushSvg = () => {
           </rect>
         </clipPath>
         {/*clip path for shape;
-        clip path should use clipPathUnits="objectBoundingBox" to stretch to full size
+        clip path should use{clipPathUnits="objectBoundingBox" to stretch to full size
         in this case path should contain points from 0 to 1 (1px size)*/}
         <clipPath id="clip" clipPathUnits="objectBoundingBox">
           <use href="#brush-shape" clipPath="url(#rect-cp)" />

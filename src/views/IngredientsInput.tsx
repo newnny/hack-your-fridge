@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { getReceipeResponse } from '../api/receipesAPI';
 import Brush from '../components/Brush';
 import { BrushSvg } from '../utils/BrushSvg';
+import RandomCircles from '../components/RandomCircles';
 import '../styles/IngredientsInputStyle.css';
 
 type Dimentions = {
@@ -46,7 +47,9 @@ const IngredientInput: React.FC = () => {
           }}
         >
           <div>
-            <Brush dimentions={dimentions}/>
+            <Brush dimentions={dimentions}>
+              <RandomCircles dimentions={dimentions}/>
+            </Brush>
             <BrushSvg />
           </div>
         </div>
