@@ -1,5 +1,5 @@
 import IngredientInput from "./IngredientsInput"
-import Receipes from "./Receipes"
+import Receipes from "./Recipes"
 
 const ContentView = () => {
   return (

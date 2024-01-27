@@ -1,15 +1,19 @@
 import React, { useState } from 'react';
-import { getReceipeResponse } from '../api/receipesAPI';
+import { fetchRecipes } from '../Store/modules/recipesSlice';
 import '../styles/IngredientsInputStyle.css';
+import { useAppDispatch } from '../Store/reduxHooks';
 
 const IngredientInput: React.FC = () => {
   const [input, setInput] = useState<string>("")
+  const [click, setClick]= useState<boolean>(false)
 
-  const handleGetDishes = async (maxResult: string, ingredient: string) => {
-    const receipes = await getReceipeResponse(maxResult, ingredient)
-    console.log(receipes)
-    console.log(JSON.stringify([input]))
+  const dispatch = useAppDispatch();
+
+  const handleGetRecipes = async (ingredient: string) => {
+    const a = await dispatch(fetchRecipes(ingredient));
+    setClick(!click)
   }
+  console.log(click, "click")
 
   return (
     <>
@@ -30,7 +34,8 @@ const IngredientInput: React.FC = () => {
         <div className='action-div'>
           <button
             className='btn'
-            onClick={() => handleGetDishes('30', `${input}`)}
+            type='submit'
+            onClick={() => handleGetRecipes(`${input}`)}
           >
             Get inspiration
           </button>
