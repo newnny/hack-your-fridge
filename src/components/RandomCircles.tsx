@@ -20,9 +20,10 @@ interface RamdomCirclesProps {
 
 const RandomCircles: React.FC<RamdomCirclesProps> = ({ dimentions }) => {
   const [circles, setCircles] = useState<Circle[]>([]);
-  const colors = ['#f6e789', '#c34647', '#e1e1d6', '#65175a', '#585e3c']
 
   useEffect(() => {
+    const colors: string[] = ['#f6e789', '#c34647', '#e1e1d6', '#65175a', '#585e3c']
+
     const generateRandomValue = () => Math.floor(Math.random() * 50);
 
     const generateRandomColor = () => {

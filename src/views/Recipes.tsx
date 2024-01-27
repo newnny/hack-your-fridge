@@ -1,5 +1,5 @@
 import { useAppSelector } from "../Store/reduxHooks"
-import React, { useEffect } from "react";
+
 const Receipes = () => {
   const recipes = useAppSelector(state => state.recipes.recipes)
   console.log(recipes, "recipes")

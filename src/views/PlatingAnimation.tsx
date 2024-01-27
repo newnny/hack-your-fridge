@@ -31,7 +31,7 @@ const PlatingAnimation:React.FC<PlatingAnimationProps> = ({onClick}) => {
     return (() => {
       window.removeEventListener('resize', updateDimension);
     })
-  }, [window.innerWidth])
+  }, [dimentions])
 
   return (
     <div className='main-wrapper'>

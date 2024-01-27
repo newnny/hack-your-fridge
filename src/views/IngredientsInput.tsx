@@ -5,15 +5,11 @@ import { useAppDispatch } from '../Store/reduxHooks';
 
 const IngredientInput: React.FC = () => {
   const [input, setInput] = useState<string>("")
-  const [click, setClick]= useState<boolean>(false)
-
   const dispatch = useAppDispatch();
 
   const handleGetRecipes = async (ingredient: string) => {
-    const a = await dispatch(fetchRecipes(ingredient));
-    setClick(!click)
+    await dispatch(fetchRecipes(ingredient));
   }
-  console.log(click, "click")
 
   return (
     <>

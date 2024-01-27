@@ -25,7 +25,7 @@ function App() {
 
   useEffect(() => {
     setViewHeight(window.innerHeight)
-  }, [window.innerHeight])
+  }, [])
 
   return (
     <div className='main-wrapper'>
