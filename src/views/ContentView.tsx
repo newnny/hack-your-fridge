@@ -3,10 +3,10 @@ import Receipes from "./Recipes"
 
 const ContentView = () => {
   return (
-    <>
+    <div style={{margin: 10}}>
       <IngredientInput />
       <Receipes />
-    </>
+    </div>
   )
 }
 

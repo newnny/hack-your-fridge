@@ -1,33 +1,74 @@
+import React, { useState } from 'react';
 import { useAppSelector } from "../Store/reduxHooks"
+import IngredientDetails from './IngredientDetails';
+import '../styles/RecipesStyles.css'
+import { Divider } from '@mui/material';
 
 const Receipes = () => {
+  const [seeDetails, setSeeDetails] = useState<boolean>(false)
+  const [btnIndex, setBtnIndex] = useState<number>(0)
+
   const recipes = useAppSelector(state => state.recipes.recipes)
-  console.log(recipes, "recipes")
   const loading = useAppSelector(state => state.recipes.loading)
+
+  const handleClickDetails = (id: number) => {
+    setBtnIndex(id)
+    setSeeDetails(!seeDetails)
+  }
+
+  const handleOpenDirection = (url: string) => {
+    window.open(url, '_blank', 'noopener,noreferrer')
+  }
+
   return (
     <div>
       {loading ?
         <div>
           <p>Loading</p>
-          <p style={{ color: "#acab9b" }}>text colour match: #acab9b</p>
-          <p style={{ color: "#6a7d72" }}>text colour match: #6a7d72</p>
-          <p style={{ color: "#8d9a90" }}>text colour match: #8d9a90</p>
         </div>
         :
         <div>
           {recipes.map((r, i) =>
-            <div key={i}>
-              <p style={{ color: "#acab9b" }}>
-                {r.name}
-              </p>
-              <p style={{ color: "#6a7d72" }}>
-                {r.ingredients.map((ingredient, index) => (
-                  (r.ingredients).length-1 === index ? ingredient : ingredient + ", "
-                ))}
-              </p>
+            <div key={i} style={{marginBottom: 10}}>
+              <div className='recipe-overveiw-div'>
+                {r.image.flatMap(item =>
+                  <img
+                    key={i}
+                    src={item}
+                    alt={`${r.name}-img`}
+                    style={{ width: 350, height: 300 }}
+                  />
+                )}
+                <p className='recipe-name'>
+                  {r.name}
+                </p>
+              </div>
+              <div className='button-group'>
+                <button className='description-button'>
+                  {r.totalTime}
+                </button>
+                <button
+                  className='description-button'
+                  onClick={() => handleClickDetails(i)}
+                >
+                  Ingredients
+                </button>
+                <button
+                  className='description-button'
+                  onClick={() => handleOpenDirection(r.directionsUrl)}
+                >
+                  Recipe
+                </button>
+              </div>
+              {i === btnIndex && seeDetails &&
+                <IngredientDetails recipes={r} />
+              }
+              
+      <Divider variant="middle"  />
             </div>
           )}
-        </div>}
+        </div>
+      }
     </div>
   )
 }

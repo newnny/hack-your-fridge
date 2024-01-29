@@ -6,28 +6,56 @@ interface ogReceipes {
       ingredientLines: {
         ingredient: string;
         remainder?: string | null;
+        wholeLine: string;
+        amount: {
+          metric: {
+            quantity: number;
+            unit: {
+              abbreviation: string;
+            }
+          }
+        }
       }[];
       details: {
         name: string;
+        images: {
+          resizableImageUrl: string
+        }[];
+        totalTime: string;
+        directionsUrl: string;
       };
     };
   }[];
-  seo: object;
 }
 
-export interface Recipe {
+export interface IngredientInterface {
+  ingredient: string;
+  remainder?: string | null;
+  wholeLine: string;
+  amount: {
+    quantity: number | null;
+    unit: string | null
+  }
+}
+
+export interface RecipeInterface {
   name: string;
-  ingredients: string[];
+  image: string[];
+  totalTime: string;
+  directionsUrl: string;
+  ingredients: IngredientInterface[];
 }
 
 interface RecipeState {
   loading: boolean;
-  recipes: Recipe[];
+  recipes: RecipeInterface[];
+  favouriteRecipes: RecipeInterface[];
 }
 
 const initialState: RecipeState = {
   loading: false,
-  recipes: []
+  recipes: [],
+  favouriteRecipes: []
 }
 
 export const fetchRecipes = createAsyncThunk("recipes/fetch", async (ingredient: string, thunkAPI) => {
@@ -47,10 +75,23 @@ export const fetchRecipes = createAsyncThunk("recipes/fetch", async (ingredient:
       throw new Error(`Request failed with status ${response.status}`);
     } else {
       const jsonRes: ogReceipes = await response.json();
-      const modifiedRes: Recipe[] = jsonRes.feed.map((el) => {
+      const modifiedRes: RecipeInterface[] = jsonRes.feed.map((el) => {
         return {
           name: el?.content?.details?.name,
-          ingredients: el?.content?.ingredientLines?.map((i) => { return i.ingredient })
+          image: el?.content?.details?.images?.map(i => i.resizableImageUrl),
+          totalTime: el?.content?.details?.totalTime,
+          directionsUrl: el?.content?.details?.directionsUrl,
+          ingredients: el?.content?.ingredientLines?.map((i) => {
+            return {
+              ingredient: i.ingredient,
+              remainder: i.remainder,
+              wholeLine: i.wholeLine,
+              amount: {
+                quantity: i.amount.metric.quantity,
+                unit: i.amount.metric.unit.abbreviation.includes(".") ? i.amount.metric.unit.abbreviation.replace(".", "") : i.amount.metric.unit.abbreviation
+              }
+            }
+          })
         };
       });
       return modifiedRes;
@@ -64,9 +105,14 @@ export const RecipeSlice = createSlice({
   name: "recipe",
   initialState,
   reducers: {
-    addRecipe: (state, action: PayloadAction<{ name: string, ingredients: string[] }>) => {
-      state.recipes.push({
+    addRecipe: (state, action: PayloadAction<{
+      name: string, image: string[], totalTime: string, directionsUrl: string, ingredients: []
+    }>) => {
+      state.favouriteRecipes.push({
         name: action.payload.name,
+        image: action.payload.image,
+        totalTime: action.payload.totalTime,
+        directionsUrl: action.payload.directionsUrl,
         ingredients: action.payload.ingredients
       })
     }
@@ -76,16 +122,16 @@ export const RecipeSlice = createSlice({
       state.loading = true;
     });
     builder.addCase(fetchRecipes.fulfilled, (state, action) => {
-        if (action.payload) {
-          state.recipes = action.payload;
-          state.loading = false;
-        } else {
-          console.log("action.payload is null or undefined")
-        }
+      if (action.payload) {
+        state.recipes = action.payload;
+        state.loading = false;
+      } else {
+        console.log("action.payload is null or undefined")
+      }
     });
     builder.addCase(fetchRecipes.rejected, (state) => {
       state.loading = false;
-      throw new Error ("Fetching api failed.");
+      throw new Error("Fetching api failed.");
     });
   }
 })

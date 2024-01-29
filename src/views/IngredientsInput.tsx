@@ -14,7 +14,7 @@ const IngredientInput: React.FC = () => {
   return (
     <>
       <div className='description-div'>
-        <p style={{ color: "#adae59" }}>
+        <p className='search-text'>
           Search receipes with ingredinets in your fridge
         </p>
       </div>

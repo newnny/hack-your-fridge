@@ -10,24 +10,24 @@
 
 .anim-circle {
   border-radius: 50%;
-  background-color: #98a9b9;
+  background-color: #404040;
 }
 
 .font {
   display: flex;
   justify-content: center;
-  color:#e8b552;
+  color:#000000;
   font-size: 30px;
   font-weight: bold;
 }
 
 .btn {
-  background-color: #e8b552;
+  background-color: #323225;
   border:none;
   border-radius: 10px;
   width: 150px;
   padding: 10px;
   font-size: 15px;
-  color: #404040;
+  color: #FFFFFF;
   font-weight: bold;
 }

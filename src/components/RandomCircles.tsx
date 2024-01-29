@@ -22,7 +22,7 @@ const RandomCircles: React.FC<RamdomCirclesProps> = ({ dimentions }) => {
   const [circles, setCircles] = useState<Circle[]>([]);
 
   useEffect(() => {
-    const colors: string[] = ['#f6e789', '#c34647', '#e1e1d6', '#65175a', '#585e3c']
+    const colors: string[] = ['#f6e789', '#c34647', '#e1e1d6', '#585e3c','#98a9b9']
 
     const generateRandomValue = () => Math.floor(Math.random() * 50);
 
