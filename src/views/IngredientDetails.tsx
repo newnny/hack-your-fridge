@@ -9,7 +9,7 @@ const IngredientDetails: React.FC<RecipeDetailsProps> = ({
   recipes
 }) => {
   const CapitalisedFirstLetter = (input: string) => {
-      return input.charAt(0).toUpperCase() + input.slice(1)
+    return input.charAt(0).toUpperCase() + input.slice(1)
   }
   return (
     <div>
@@ -17,13 +17,22 @@ const IngredientDetails: React.FC<RecipeDetailsProps> = ({
         if ((recipes.ingredients).length - 1 === index) {
           return (
             <p key={index} className="ingredient-text">
-              {`${CapitalisedFirstLetter(ingredient.ingredient)}: ${ingredient.amount.quantity}${ingredient.amount.unit}` + (ingredient.remainder && (" (" + ingredient.remainder + ")"))}
+              {`${CapitalisedFirstLetter(ingredient.ingredient)}: 
+              ${ingredient.amount.quantity ? ingredient.amount.quantity : "Not specified"}
+              ${ingredient.amount.unit ? ingredient.amount.unit : ""}`
+                + (ingredient.remainder && (" (" + ingredient.remainder + ")"))
+              }
             </p>
           )
         } else {
           return (
             <p key={index} className="ingredient-text">
-              {`${CapitalisedFirstLetter(ingredient.ingredient)}: ${ingredient.amount.quantity}${ingredient.amount.unit}` + (ingredient.remainder && (" (" + ingredient.remainder + ")")) + ", "}
+              {`${CapitalisedFirstLetter(ingredient.ingredient)}: 
+              ${ingredient.amount.quantity ? ingredient.amount.quantity : "Not specified"}
+              ${ingredient.amount.unit ? ingredient.amount.unit : ""}`
+                + (ingredient.remainder && (" (" + ingredient.remainder + ")"))
+                + ", "
+              }
             </p>
           )
         }

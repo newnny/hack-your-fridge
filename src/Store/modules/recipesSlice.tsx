@@ -63,7 +63,7 @@ export const fetchRecipes = createAsyncThunk("recipes/fetch", async (ingredient:
   const apiKey: string = process.env.REACT_APP_TASTY_API_KEY || "";
 
   try {
-    const response = await fetch(`${apiUrl}?start=0 &maxResult=15&start=10&q=${ingredient}`, {
+    const response = await fetch(`${apiUrl}?start=0 &maxResult=20&start=10&q=${ingredient}`, {
       method: "GET",
       headers: {
         "X-RapidAPI-Key": apiKey,

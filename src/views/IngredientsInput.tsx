@@ -2,14 +2,25 @@ import React, { useState } from 'react';
 import { fetchRecipes } from '../Store/modules/recipesSlice';
 import '../styles/IngredientsInputStyle.css';
 import { useAppDispatch } from '../Store/reduxHooks';
+import { Chip, Stack } from '@mui/material';
 
 const IngredientInput: React.FC = () => {
   const [input, setInput] = useState<string>("")
   const dispatch = useAppDispatch();
 
+  const handleClickChip = (option: string) => {
+    setInput(input + ", " + option)
+  }
+
+  const handleDeleteChip = () => {
+    console.log("delete")
+  }
+
   const handleGetRecipes = async (ingredient: string) => {
     await dispatch(fetchRecipes(ingredient));
   }
+
+  const options: string[] = ["Vegan", "Vegetarian", "Non-dairy", "Low-sugar", "Low-fat", "Low-calories", "Easy", "Dinner", "Lunch", "Breakfast"]
 
   return (
     <>
@@ -26,6 +37,15 @@ const IngredientInput: React.FC = () => {
             type='text'
             className='input-field'
           />
+
+          <Stack direction="row" spacing={1}>
+            {options.map(option => 
+            <Chip
+              label={option}
+              onClick={() => handleClickChip(option)}
+              //onDelete={handleDeleteChip}
+            />)}
+          </Stack>
         </div>
         <div className='action-div'>
           <button
