@@ -23,6 +23,7 @@
   flex-direction: column;
   justify-content: center;
   padding: 10px;
+  align-items: center;
 }
 
 .input-field{
@@ -41,4 +42,18 @@
   font-size: 15px;
   color: #FFFFFF;
   font-weight: bold;
+}
+
+.chip-wrap {
+  display: flex;
+  flex-direction: row;
+  max-width: 360px;
+  flex-wrap: wrap;
+  padding: 8px;
+  justify-content: center;
+  
+}
+
+.chip {
+  padding: 1.5px;
 }

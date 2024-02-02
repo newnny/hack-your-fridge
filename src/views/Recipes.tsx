@@ -39,8 +39,8 @@ const Receipes = () => {
 
   return (
     <div>
-      {!loading ?
-        <div>
+      {loading ?
+        <div className='loading-div'>
           <p>Loading</p>
         </div>
         :

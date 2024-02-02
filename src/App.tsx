@@ -40,8 +40,3 @@ function App() {
 }
 
 export default App;
-
-//max result control 
-//think about paginations
-//improve input function
-//more options that user can click and add it automatically to the queiry (vegan, vegetarian, easy, dinner, lunch etc)
