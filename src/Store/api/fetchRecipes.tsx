@@ -34,7 +34,7 @@ export const fetchRecipes = createAsyncThunk("recipes/fetch", async (ingredient:
   const apiKey: string = process.env.REACT_APP_TASTY_API_KEY || "";
 
   try {
-    const response = await fetch(`${apiUrl}?start=0 &maxResult=20&start=10&q=${ingredient}`, {
+    const res = await fetch(`${apiUrl}?start=0 &maxResult=20&start=10&q=${ingredient}`, {
       method: "GET",
       headers: {
         "X-RapidAPI-Key": apiKey,
@@ -42,17 +42,17 @@ export const fetchRecipes = createAsyncThunk("recipes/fetch", async (ingredient:
       },
     });
 
-    if (!response.ok) {
-      throw new Error(`Request failed with status ${response.status}`);
+    if (!res.ok) {
+      throw new Error(`Request failed with status ${res.status}`);
     } else {
-      const jsonRes: ogReceipes = await response.json();
+      const jsonRes: ogReceipes = await res.json();
       const modifiedRes: RecipeInterface[] = jsonRes.feed.map((el) => {
         return {
-          name: el?.content?.details?.name,
-          image: el?.content?.details?.images?.map(i => i.resizableImageUrl),
-          totalTime: el?.content?.details?.totalTime,
-          directionsUrl: el?.content?.details?.directionsUrl,
-          ingredients: el?.content?.ingredientLines?.map((i) => {
+          name: el.content.details.name,
+          image: el.content.details.images.map(i => i.resizableImageUrl),
+          totalTime: el.content.details.totalTime,
+          directionsUrl: el.content.details.directionsUrl,
+          ingredients: el.content.ingredientLines.map((i) => {
             return {
               ingredient: i.ingredient,
               remainder: i.remainder,
