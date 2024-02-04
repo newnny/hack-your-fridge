@@ -1,4 +1,4 @@
-import { RecipeInterface } from "../Store/modules/recipesSlice"
+import { RecipeInterface } from "../Store/Slices/recipesSlice"
 import '../styles/IngredientDetailsStyles.css'
 
 interface RecipeDetailsProps {
