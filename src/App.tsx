@@ -11,7 +11,9 @@ function App() {
   const contentRef = useRef<HTMLDivElement>(null)
 
   const scrollToInput = () => {
-    contentRef.current?.scrollIntoView({ behavior: 'smooth' })
+    if (contentRef.current) {
+      return contentRef.current.scrollIntoView({ behavior: 'smooth' })
+    }
   }
 
   const handleclickScrolldown = () => {
