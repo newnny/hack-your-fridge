@@ -1,5 +1,5 @@
 import React, { SyntheticEvent, useState, useEffect } from 'react';
-import { fetchRecipes } from '../Store/modules/recipesSlice';
+import { fetchRecipes } from '../Store/Slices/recipesSlice';
 import '../styles/IngredientsInputStyle.css';
 import { useAppDispatch } from '../Store/reduxHooks';
 import { Chip, Stack } from '@mui/material';
