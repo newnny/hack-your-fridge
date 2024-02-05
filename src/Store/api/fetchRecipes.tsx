@@ -31,41 +31,43 @@ interface ogReceipes {
 
 export const fetchRecipes = createAsyncThunk("recipes/fetch", async (ingredient: string, thunkAPI) => {
   const apiUrl: string = "https://yummly2.p.rapidapi.com/feeds/search";
-  const apiKey: string = process.env.REACT_APP_TASTY_API_KEY || "";
+  const apiKey: string = await process.env.REACT_APP_YUMMLY_API_KEY || "";
 
   try {
-    const res = await fetch(`${apiUrl}?start=0 &maxResult=20&start=10&q=${ingredient}`, {
-      method: "GET",
-      headers: {
-        "X-RapidAPI-Key": apiKey,
-        "X-RapidAPI-Host": "yummly2.p.rapidapi.com",
-      },
-    });
-
-    if (!res.ok) {
-      throw new Error(`Request failed with status ${res.status}`);
-    } else {
-      const jsonRes: ogReceipes = await res.json();
-      const modifiedRes: RecipeInterface[] = jsonRes.feed.map((el) => {
-        return {
-          name: el.content.details.name,
-          image: el.content.details.images.map(i => i.resizableImageUrl),
-          totalTime: el.content.details.totalTime,
-          directionsUrl: el.content.details.directionsUrl,
-          ingredients: el.content.ingredientLines.map((i) => {
-            return {
-              ingredient: i.ingredient,
-              remainder: i.remainder,
-              wholeLine: i.wholeLine,
-              amount: {
-                quantity: i.amount.metric.quantity,
-                unit: i.amount.metric.unit.abbreviation.includes(".") ? i.amount.metric.unit.abbreviation.replace(".", "") : i.amount.metric.unit.abbreviation
-              }
-            }
-          })
-        };
+    if (apiKey && apiKey !== "") {
+      const res = await fetch(`${apiUrl}?start=0 &maxResult=20&start=10&q=${ingredient}`, {
+        method: "GET",
+        headers: {
+          'X-RapidAPI-Key': apiKey,
+          'X-RapidAPI-Host': 'yummly2.p.rapidapi.com'
+        },
       });
-      return modifiedRes;
+
+      if (!res.ok) {
+        throw new Error(`Request failed with status ${res.status}`);
+      } else {
+        const jsonRes: ogReceipes = await res.json();
+        const modifiedRes: RecipeInterface[] = jsonRes.feed.map((el) => {
+          return {
+            name: el.content.details.name,
+            image: el.content.details.images.map(i => i.resizableImageUrl),
+            totalTime: el.content.details.totalTime,
+            directionsUrl: el.content.details.directionsUrl,
+            ingredients: el.content.ingredientLines.map((i) => {
+              return {
+                ingredient: i.ingredient,
+                remainder: i.remainder,
+                wholeLine: i.wholeLine,
+                amount: {
+                  quantity: i.amount.metric.quantity,
+                  unit: i.amount.metric.unit.abbreviation.includes(".") ? i.amount.metric.unit.abbreviation.replace(".", "") : i.amount.metric.unit.abbreviation
+                }
+              }
+            })
+          };
+        });
+        return modifiedRes;
+      }
     }
   } catch (error) {
     console.error(error);
