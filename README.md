@@ -1,46 +1,68 @@
-# Getting Started with Create React App
+# Hack your Fridge
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Hack your Fridge is a web application that helps users cook efficiently by suggesting recipes based on the ingredients they have in their fridge. The application leverages the Yummly API and is built using TypeScript, React, and deployed on Vercel.
 
-## Available Scripts
+## Features
 
-In the project directory, you can run:
+1. **Ingredient Input:**
+   - Users can input the ingredients they have in their fridge or pantry.
+   - Support for various ingredients and quantity specifications.
 
-### `npm start`
+2. **Recipe Suggestions:**
+   - Fetches and displays recipe suggestions from the Yummly API based on user-inputted ingredients.
+   - Users can explore a list of recipes that can be prepared with their available ingredients.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+3. **Recipe Details:**
+   - View detailed information about selected recipes, including ingredients, instructions, and estimated cooking time.
+   - Direct link to the full recipe on the Yummly website for more details.
+   - 
+## Getting Started
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+### Prerequisites
 
-### `npm test`
+- Node.js and npm installed
+- Yummly API key (I got the api key through [Rapidapi](https://rapidapi.com/apidojo/api/yummly2/))
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### Installation
 
-### `npm run build`
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/your-username/hack-your-fridge.git
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+2. Install dependencies:
+```
+  cd hack-your-fridge
+  npm install
+```
+3. Set up Yummly API key:
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+    Obtain an API key from the Yummly developer portal or [Rapidapi](https://rapidapi.com/apidojo/api/yummly2/).
+    Create a ***.env file*** in the project root and add your API key:
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+    makefile
 
-### `npm run eject`
+        REACT_APP_YUMMLY_API_KEY=your-api-key
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## Usage
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+  Start the application:    
+  
+    npm start
+    
+ Open your browser and visit http://localhost:3000.
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
 
-## Learn More
+## Contributing
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+Contributions are welcome! 
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+
+## License
+
+This project is licensed under the MIT License.
+
+
+## Acknowledgments
+
+Yummly API for providing recipe data.
