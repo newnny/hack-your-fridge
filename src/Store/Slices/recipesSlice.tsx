@@ -1,7 +1,6 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { fetchRecipes } from "../api/fetchRecipes";
 
-
 interface IngredientInterface {
   ingredient: string;
   remainder?: string | null;
