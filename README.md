@@ -1,6 +1,7 @@
-# Hack your Fridge
+# [Hack your Fridge](https://hack-your-fridge.vercel.app/)
 
 Hack your Fridge is a web application that helps users cook efficiently by suggesting recipes based on the ingredients they have in their fridge. The application leverages the Yummly API and is built using TypeScript, React, and deployed on Vercel.
+
 
 ## Features
 
