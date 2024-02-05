@@ -29,11 +29,10 @@ interface ogReceipes {
   }[];
 }
 
-const apiUrl: string = process.env.REACT_APP_YUMMLY_API_URL as string;
 const apiKey: string = process.env.REACT_APP_YUMMLY_API_KEY as string;
 
 export const fetchRecipes = createAsyncThunk("recipes/fetch", async (ingredient: string, thunkAPI) => {
-  const res = await fetch(`${apiUrl}?start=0&maxResult=20&start=10&q=${ingredient}`, {
+  const res = await fetch(`https://yummly2.p.rapidapi.com/feeds/search?start=0&maxResult=20&start=10&q=${ingredient}`, {
     method: "GET",
     headers: {
       'X-RapidAPI-Key': apiKey,
