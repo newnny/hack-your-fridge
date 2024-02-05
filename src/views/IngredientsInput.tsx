@@ -50,7 +50,7 @@ const IngredientInput: React.FC = () => {
     <>
       <div className='description-div'>
         <p className='search-text'>
-          Search receipes with ingredinets in your fridge
+          Search receipes with ingredients in your fridge
         </p>
       </div>
       <div className='action-wrapper'>
